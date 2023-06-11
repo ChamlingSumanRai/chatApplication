@@ -1,18 +1,25 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { useState } from 'react';
 import Link from 'next/link';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import {TwoWheeler} from '@mui/icons-material';
+import {HailSharp} from '@mui/icons-material';
 
 const Register = ( )=> {
-   
+const [role, setRole]= useState('user')  
+  
     return (
         <div>
     
       
         <Formik
           initialValues={{
+            fullName: '',
             phoneNumber: '',
             password: '',
-            email: ''
+            confirmPassword: ''
           }}
           onSubmit={values => {
             const requestOptions = {
@@ -26,6 +33,12 @@ const Register = ( )=> {
         >
           {({ errors, touched }) => (
             <Form>
+
+              <Field name="fullName" placeholder="fullName"/>
+              {errors.fullName && touched.fullName ? (
+                <div>{errors.phoneNumber}</div>
+              ) : null}
+              <br/>
               <Field name="phoneNumber" placeholder="phoneNumber"/>
               {errors.phoneNumber && touched.phoneNumber ? (
                 <div>{errors.phoneNumber}</div>
@@ -36,12 +49,18 @@ const Register = ( )=> {
                 <div>{errors.password}</div>
               ) : null}
               <br/>
-              <Field name="email"  placeholder="email"/>
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
+              <Field name="confirmPassword"  placeholder="confirmPassword"/>
+              {errors.confirmPassword && touched.confirmPassword ? <div>{errors.confirmPassword}</div> : null}
               <br/>
               
+              <Stack direction="row" spacing={1}>
+              <Chip icon={<TwoWheeler />} label="Rider" onClick = {()=> setRole('rider')} color = {role == 'passenger'? 'primary': 'success'} />
+               <Chip icon={<HailSharp />} label="Passenger" variant="outlined" color = {role == 'rider'? 'primary': 'success'} onClick = {()=> setRole('passenger')} />
+               
+               </Stack>
+
               <button type="submit">Submit</button>
-              Already User <Link href="/login">Signin</Link>
+              Already User <Link href="/">Signin</Link>
             </Form>
           )}
         </Formik>

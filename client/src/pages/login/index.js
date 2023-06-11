@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
+
+
 const Login = ( )=> {
   
     const triggerLogin = async(values)=>{
@@ -12,10 +14,7 @@ const Login = ( )=> {
     const res = await fetch('http://localhost:3001/login', requestOptions)
     const data = await res.json()
   
-    if(data.isLoggedIn){
-   
-     
-    }
+    
 
     }
     return (
