@@ -1,14 +1,18 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState } from 'react-redux';
 import Link from 'next/link';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import {TwoWheeler} from '@mui/icons-material';
 import {HailSharp} from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 const Register = ( )=> {
-const [role, setRole]= useState('user')  
+
+  const z = useSelector(state=>state.user)
+  console.log(z)
+// const [role, setRole]= useState('user')  
   
     return (
         <div>
@@ -53,11 +57,11 @@ const [role, setRole]= useState('user')
               {errors.confirmPassword && touched.confirmPassword ? <div>{errors.confirmPassword}</div> : null}
               <br/>
               
-              <Stack direction="row" spacing={1}>
+              {/* <Stack direction="row" spacing={1}>
               <Chip icon={<TwoWheeler />} label="Rider" onClick = {()=> setRole('rider')} color = {role == 'passenger'? 'primary': 'success'} />
                <Chip icon={<HailSharp />} label="Passenger" variant="outlined" color = {role == 'rider'? 'primary': 'success'} onClick = {()=> setRole('passenger')} />
                
-               </Stack>
+               </Stack> */}
 
               <button type="submit">Submit</button>
               Already User <Link href="/">Signin</Link>
