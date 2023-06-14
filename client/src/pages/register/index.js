@@ -1,20 +1,22 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react-redux';
 import Link from 'next/link';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import {TwoWheeler} from '@mui/icons-material';
-import {HailSharp} from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+
+// import { useState } from 'react-redux';
+// import Chip from '@mui/material/Chip';
+// import Stack from '@mui/material/Stack';
+// import {TwoWheeler} from '@mui/icons-material';
+// import {HailSharp} from '@mui/icons-material';
+// import { useSelector } from 'react-redux';
 
 const Register = ( )=> {
 
-  const z = useSelector(state=>state.user)
-  console.log(z)
+  // const z = useSelector(state=>state.user)
+  // console.log(z)
+  
 // const [role, setRole]= useState('user')  
   
-    return (
+    return (  
         <div>
     
       
