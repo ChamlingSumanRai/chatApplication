@@ -18,19 +18,15 @@ const registerNewUser=  async (req,res)=>{
 
  
  const loginUser=  async (req,res)=>{
-  //console.log(req.body)
-   // step 1: check if the phoneNumber/username/email exist or not
-  
-   // const hashPassword= await req.body.password
-  // bcrypt.hashPassword(req.body.password =hashPassword);
-
- 
- const data = await User.findOne({phoneNumber: req.body.phoneNumber})
+  try{
+    const data = await User.findOne({phoneNumber: req.body.phoneNumber})
  // step 2: check if the password is matched or not
- const isMatched= await bcrypt.compare(req.body.password, data.password)
+ 
     //  step 3: generate the token for the user
-   if(data&& isMatched){
-    const token = jwt.sign({ phoneNumber: req.body.phoneNumber }, process.env.SECRET_KEY);
+   if(data){
+    const isMatched= await bcrypt.compare(req.body.password, data.password)
+    if(isMatched){
+      const token = jwt.sign({ phoneNumber: req.body.phoneNumber }, process.env.SECRET_KEY);
     console.log(token)
     res.json({
     isLoggedIn: true,
@@ -38,14 +34,36 @@ const registerNewUser=  async (req,res)=>{
     id: data._id,
     token: token
     })
-  }else{
+    }else{
+      res.json({
+        isLoggedIn: false,
+        msg: "invalid Password"
+      })
+    }
+    }else{
     res.json({
       isLoggedIn: false,
       msg: "user doesnnot exist"
     })
   }
+  }catch(err){
+    console.log(err)
+  }
+  } 
+  
 
-}
+  
+
+
+  //console.log(req.body)
+   // step 1: check if the phoneNumber/username/email exist or not
+  
+   // const hashPassword= await req.body.password
+  // bcrypt.hashPassword(req.body.password =hashPassword);
+
+ 
+ 
+
 
 
 const getAllUser =  async (req,res)=>{
