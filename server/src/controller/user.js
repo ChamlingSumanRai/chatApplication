@@ -30,9 +30,11 @@ const registerNewUser=  async (req,res)=>{
     console.log(token)
     res.json({
     isLoggedIn: true,
+    phoneNumber: data.phoneNumber,
     msg:  "Login Successfully",
     id: data._id,
-    token: token
+    token: token,
+    role: data.role
     })
     }else{
       res.json({
