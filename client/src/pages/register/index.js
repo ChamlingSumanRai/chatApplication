@@ -25,8 +25,9 @@ const Register = ( )=> {
             fullName: '',
             phoneNumber: '',
             password: '',
-            confirmPassword: ''
-          }}
+            confirmPassword: '',
+            role: ''
+                    }}
           onSubmit={values => {
             const requestOptions = {
               method: 'POST',
@@ -57,6 +58,11 @@ const Register = ( )=> {
               <br/>
               <Field name="confirmPassword"  placeholder="confirmPassword"/>
               {errors.confirmPassword && touched.confirmPassword ? <div>{errors.confirmPassword}</div> : null}
+              <br/>
+              <Field name="role" placeholder="role"/>
+              {errors.role && touched.role? (
+                <div>{errors.role}</div>
+              ) : null}
               <br/>
               
               {/* <Stack direction="row" spacing={1}>
