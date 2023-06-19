@@ -1,0 +1,11 @@
+.basicMenu{
+    float: 'right';
+    position: absolute;
+}
+
+.searchBox{
+    display: block;
+    background-color: #fff;
+    margin-top: 58px;
+}
+    
