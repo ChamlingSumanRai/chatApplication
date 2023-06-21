@@ -7,12 +7,14 @@ const registerNewUser=  async (req,res)=>{
   //encryption of password in hascode
   const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
   req.body.password= hashPassword 
-    console.log(hashPassword)
+    //console.log(hashPassword)
     const data = await User.create(req.body)
     if(data) {
       res.json({
-        msg: "registration succes"
+        msg: "registration succes",
+        success: true
       })
+
     }
   }
 
